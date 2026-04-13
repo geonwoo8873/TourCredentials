@@ -1,7 +1,3 @@
-## CodeQL 코드 검사 분석
-```yml
-# Example
-
 name: 'Code Scanning : Upload SARIF'
 description: 'Upload the analysis results'
 author: 'GitHub'
@@ -33,4 +29,3 @@ inputs:
 runs:
   using: 'node12'
   main: '../lib/upload-sarif-action.js' 
-```
