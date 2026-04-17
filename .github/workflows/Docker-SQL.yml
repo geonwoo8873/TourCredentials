@@ -1,12 +1,13 @@
 name: PostgreSQL Docker Build Test
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - docker
     paths:
-      - '/Docker/**.SQL'
-      - 'SQL/**.SQL'
+      - 'Docker/**'
+      - 'SQL/**/*.sql'
 
 jobs:
   build:

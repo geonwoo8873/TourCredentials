@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - credential
+      - docker
 
 permissions:
   # `contents`는 Repository contents에 대한 권한을 설정 (read, write, admin)
@@ -23,7 +24,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           # `ref: <branch-name>`은 특정 브랜치를 체크아웃하는 옵션이다. (기본값: 현재 브랜치)
-          ref: credential
+          ref: |
+            - credential
+            - docker
           # `fetch-depth: <n>`는 git hitory에서 최신 로그 기준으로 n개 만큼 범위를 지정하여 가져온다.(0: ALL)
           fetch-depth: 0
 
@@ -35,9 +38,10 @@ jobs:
 
       - name: Merge credential into main
         run: |
-          git fetch origin main credential
+          git fetch origin main credential docker
           git checkout main
           git merge --no-ff --no-edit origin/credential
+          git merge --no-ff --no-edit origin/docker
           git push origin main
       # - name: Create Pull Request credential to main
       #   id: cpr
