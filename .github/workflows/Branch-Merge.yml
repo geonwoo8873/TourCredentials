@@ -1,44 +1,67 @@
 name: GitHub Credentials Branch Merge
 
 on:
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: Branch to merge into main (credential or docker)
+        required: false
+        type: string
   push:
     branches:
       - credential
+      - docker
+
+concurrency:
+  group: branch-merge-main
+  cancel-in-progress: false
 
 permissions:
-  # `contents`는 Repository contents에 대한 권한을 설정 (read, write, admin)
   contents: write
-  # `pull-requests`는 Pull Request에 대한 권한을 설정 (read, write, admin)
-  # pull-requests: write
-
-# concurrency:
-#   group: branch-merge-credential-to-main
-#   cancel-in-progress: true
 
 jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout credential
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          # `ref: <branch-name>`은 특정 브랜치를 체크아웃하는 옵션이다. (기본값: 현재 브랜치)
-          ref: credential
-          # `fetch-depth: <n>`는 git hitory에서 최신 로그 기준으로 n개 만큼 범위를 지정하여 가져온다.(0: ALL)
-          fetch-depth: 0
+          fetch-depth: 0 # `fetch-depth: <n>` is not supported when using `git fetch` with multiple branches
 
+      - name: Resolve source branch
+        id: source
+        shell: bash
+        run: |
+          SOURCE_BRANCH="${{ github.event.inputs.source_branch }}"
+          if [ -z "$SOURCE_BRANCH" ]; then
+            SOURCE_BRANCH="${GITHUB_REF_NAME}"
+          fi
+
+          case "$SOURCE_BRANCH" in
+            credential|docker)
+              echo "branch=$SOURCE_BRANCH" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "Unsupported source branch: $SOURCE_BRANCH"
+              exit 1
+              ;;
+          esac
 
       - name: Configure Git
         run: |
           git config user.name "GitHub Actions Automation"
           git config user.email "geonwoo8873@outlook.com"
 
-      - name: Merge credential into main
+      - name: Merge source branch into main
+        shell: bash
         run: |
-          git fetch origin main credential
-          git checkout main
-          git merge --no-ff --no-edit origin/credential
-          git push origin main
+          SOURCE_BRANCH="${{ steps.source.outputs.branch }}"
+
+          git fetch origin main "$SOURCE_BRANCH"
+          git checkout -B main origin/main
+
+          git merge --no-ff --no-edit "origin/$SOURCE_BRANCH"
+          git push origin HEAD:main
       # - name: Create Pull Request credential to main
       #   id: cpr
       #   uses: peter-evans/create-pull-request@v6
