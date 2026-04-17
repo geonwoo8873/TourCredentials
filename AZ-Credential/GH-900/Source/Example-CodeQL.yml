@@ -19,7 +19,7 @@ inputs:
     default: ${{ github.token }}
   matrix:
     default: ${{ toJson(matrix) }}
-  category:
+  category:0
     description: String used by Code Scanning for matching the analyses
     required: false
   wait-for-processing:
