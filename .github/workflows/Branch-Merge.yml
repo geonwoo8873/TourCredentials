@@ -11,6 +11,7 @@ on:
     branches:
       - credential
       - docker
+      - net
 
 concurrency:
   group: branch-merge-main
