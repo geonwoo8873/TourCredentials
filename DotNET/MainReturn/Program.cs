@@ -17,7 +17,7 @@ class Program
     // 비동기 메서드에서 사용되며, `async`와 `await` 키워드를 사용하여 비동기 작업이 완료될 때까지 대기 후 처리
     static async Task<string> AsyncReturnValue(string s)
     {
-        // `Task.Delay(n)`는 지정된 `n` 시간동안 비동기적으로 대기하는 작업을 생성
+        // `Task.Delay(int)`는 지정된 `n` 시간동안 비동기적으로 대기하는 작업을 생성
         await Task.Delay(100);
         return s;
     }
@@ -29,10 +29,10 @@ class Program
 
     static void TypeChangedValue()
     {   
-        // `Parse`는 문자열을 해당 타입으로 변환하는
+        // `{Datatype}.Parse`는 문자열을 해당 타입으로 변환, 예외가 발생할 수 있으므로 입력이 유효한지 확인 필요
         Console.WriteLine($"Type Changed Value of Parse: {int.Parse("123")}");
         
-        // `Convert.ToInt32`는 다양한 타입을 정수로 변환하는
+        // `Convert.{Datatype}`은 문자열을 해당 타입으로 변환, `Parse`와 유사하지만 예외 처리 방식이 다름
         Console.WriteLine($"Type Changed Value of Convert: {Convert.ToInt32("123")}");
     }
 
