@@ -1,12 +1,5 @@
 # Git CommandLine
 
-## Git User Configure
-* Linux
-  * `/etc/gitconfig`
-* Window
-  * `C:\Users\$USER\.gitconfig`
-
-
 ## Git Status
 
 ```bash
