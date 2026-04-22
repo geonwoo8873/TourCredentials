@@ -12,6 +12,7 @@ on:
       - credential
       - docker
       - net
+      - golang
 
 concurrency:
   group: branch-merge-main
