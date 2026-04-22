@@ -40,7 +40,7 @@ jobs:
           fi
 
           case "$SOURCE_BRANCH" in
-            credential|docker)
+            credential|docker|net|golang)
               echo "branch=$SOURCE_BRANCH" >> "$GITHUB_OUTPUT"
               ;;
             *)
