@@ -1,23 +1,47 @@
-//// N.1
-// `package main`은 컴파일 시작점을 포함하는 기본 패키지이다. 패키지는 패키지의 이름으로 `main`으로 사용할 수 없다.
-// `main()` 함수가 없기 때문에 실행 파일을 생성할 수 없고, 다른 패키지에서 외부 패키지로 사용된다.
-//// N.2
-// `import`는 다른 패키지를 현재 패키지로 가져오는 데 사용된다.
-// `fmt` 패키지는 포맷된 입출력 함수를 구현하는 Go 언어 표준 라이브러리 패키지이다.
-//// N.3
-// func <function name>(value type) <return type> {...}
-
 // N.1
 package main
 
 // N.2
-import "fmt"
+import (
+	"fmt"
+)
 
-// N.3
-func Calculate(t int, p float64) float64 {
-	return float64(t) * p * 10000
+// `func function_name(parameters) return_type {...}`
+// `int` is default byte for integer type of 64
+func Default_Integer_Type(i int) int {
+	return i
 }
 
+// `func function_name(parameters) (return_type1, return_type2, ...) {...}`
+// int8 = 1byte and -128 to 127
+// int16 = 2bytes and -32768 to 32767
+// int32 = 4bytes and -2147483648 to 2147483647
+// int64 = 8bytes and -9223372036854775808 to 9223372036854775807
+func Others_Integer_Type(i8 int8, i16 int16, i32 int32, i64 int64) (int8, int16, int32, int64) {
+	return i8, i16, i32, i64
+}
+
+// float64 = 64bit and 8bytes float
+func Default_Float_Type(f float64) float64 {
+	return f
+}
+
+// float32 = 32bit and 4bytes float
+// complex64 = 32bit real and 32bit imaginary
+// complex128 = 64bit real and 64bit imaginary
+func Others_Float_Type(f float32, c64 complex64, c128 complex128) (float32, complex64, complex128) {
+	return f, c64, c128
+}
+
+func Default_Byte_Type(b byte) byte {
+	return b
+}
+
+// N.3
 func main() {
-	fmt.Println(Calculate(45, 0.5))
+	fmt.Println(Default_Integer_Type(10))                  // Output : 10
+	fmt.Println(Others_Integer_Type(1, 2, 3, 4))           // Output : 1 2 3 4
+	fmt.Println(Default_Float_Type(1.23456789))            // Output : 1.23456789
+	fmt.Println(Others_Float_Type(1.23456789, 1+2i, 1+2i)) // Output : 1.2345679  (1+2i) (1+2i)
+	fmt.Println(Default_Byte_Type('A'))                    // Output : 65
 }
