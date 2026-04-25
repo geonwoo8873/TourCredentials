@@ -51,11 +51,20 @@ jobs:
 
             - name: Repository has other branches Check
               run: |
-                GOLANG_BRANCH=${{ github.ref_name == 'golang' }}
-                echo "GOLANG_BRANCH: $GOLANG_BRANCH"
-                CREDENTIAL_BRANCH=${{ github.ref_name == 'credential' }}
-                echo "CREDENTIAL_BRANCH: $CREDENTIAL_BRANCH"
-                DOCKER_BRANCH=${{ github.ref_name == 'docker' }}
-                echo "DOCKER_BRANCH: $DOCKER_BRANCH"
-                NET_BRANCH=${{ github.ref_name == 'net' }}
-                echo "NET_BRANCH: $NET_BRANCH"
+                BRANCHES=("credential" "docker" "net" "golang")
+                for branch in "${BRANCHES[@]}"; do
+                if git ls-remote --exit-code --heads origin "$branch" > /dev/null 2>&1; then
+                    echo "$branch: alive"
+                else
+                    echo "$branch: NOT FOUND (dead or deleted)"
+                fi
+                done
+
+                # GOLANG_BRANCH=${{ github.ref_name == 'golang' }}
+                # echo "GOLANG_BRANCH: $GOLANG_BRANCH"
+                # CREDENTIAL_BRANCH=${{ github.ref_name == 'credential' }}
+                # echo "CREDENTIAL_BRANCH: $CREDENTIAL_BRANCH"
+                # DOCKER_BRANCH=${{ github.ref_name == 'docker' }}
+                # echo "DOCKER_BRANCH: $DOCKER_BRANCH"
+                # NET_BRANCH=${{ github.ref_name == 'net' }}
+                # echo "NET_BRANCH: $NET_BRANCH"
