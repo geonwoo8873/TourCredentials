@@ -49,13 +49,13 @@ jobs:
             - name: Check branch name
               run: echo "Current branch is ${{ github.ref_name }}"
 
-            - name: Repository has other branches
+            - name: Repository has other branches Check
               run: |
-                GOLANG_BRANCH = ${{ github.ref_name == 'golang' }}
+                GOLANG_BRANCH=${{ github.ref_name == 'golang' }}
                 echo "GOLANG_BRANCH: $GOLANG_BRANCH"
-                CREDENTIAL_BRANCH = ${{ github.ref_name == 'credential' }}
+                CREDENTIAL_BRANCH=${{ github.ref_name == 'credential' }}
                 echo "CREDENTIAL_BRANCH: $CREDENTIAL_BRANCH"
-                DOCKER_BRANCH = ${{ github.ref_name == 'docker' }}
+                DOCKER_BRANCH=${{ github.ref_name == 'docker' }}
                 echo "DOCKER_BRANCH: $DOCKER_BRANCH"
-                NET_BRANCH = ${{ github.ref_name == 'net' }}
+                NET_BRANCH=${{ github.ref_name == 'net' }}
                 echo "NET_BRANCH: $NET_BRANCH"
