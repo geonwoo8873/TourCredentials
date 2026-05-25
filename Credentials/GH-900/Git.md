@@ -40,7 +40,8 @@ CVS, SVN, Perforce를 비롯한 중앙 집중식 VCS는 중앙 집중식 서버�
 
 ## 3.2 Git 명령줄 도구 <Git CommandLine tool>
 
-GitHub Desktop을 포함하여 몇 가지의 GUI를 사용할 수 있다. 대부분의 IDE 프로그램에서 사용하지만 모든 Git의 기능을 구현하는 인터페이스는 없다.
+GitHub Desktop을 포함하여 몇 가지의 GUI를 사용할 수 있다. 대부분의 IDE 
+프로그램에서 사용하지만 모든 Git의 기능을 구현하는 인터페이스는 없다.
 
 ## 3.3 Git 과 GitHub
 
