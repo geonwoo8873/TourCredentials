@@ -12,3 +12,5 @@
 
 * GitHub Foundation Dump 데이터 수집 완료
 * Git 노트 일부 내용 중복으로 인한 수정 완료
+* Dump 문제들 정리 및 일부 결과 수정 완료
+
