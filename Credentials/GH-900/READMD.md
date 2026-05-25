@@ -10,4 +10,5 @@
 
 # Update [`25/05/2026`]
 
-* GitHub Foundation Dump 데이터 수집 중
+* GitHub Foundation Dump 데이터 수집 완료
+* Git 노트 일부 내용 중복으로 인한 수정 완료
