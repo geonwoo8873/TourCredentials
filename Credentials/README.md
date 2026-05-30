@@ -6,7 +6,7 @@ GH-900, GH-100은 GitHub 관련 기능에 대한 정책 및 구성을 바탕으�
 ## Azure Cloud [AZ-900, AZ-400]
 AZ-900, AZ-400은 Microsoft의 클라우드 자격 증명으로 인프라와 데이터베이스, 
 
-# GitHub Foundations
+# GitHub Foundations & Admin
 
 ## Update [`24/05/2026`]
 
@@ -24,3 +24,5 @@ AZ-900, AZ-400은 Microsoft의 클라우드 자격 증명으로 인프라와 데
 ## Fix [`30/05/2026`]
 
 * GH-900 디렉터리 `/credentials/github/`로 변경 및 GH-100 내용과 병합 진행 중
+
+# Azure Fundamentals
