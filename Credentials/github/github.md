@@ -1,4 +1,4 @@
-# 1. GitHub란? [GH-100]
+# 1. GitHub란? [`GH-100`]
 
 <img width="100%" height="500" alt="github image" src="../github/image/github.png" />출처: [Microsoft Learn](https://learn.microsoft.com/ko-kr/)
 
@@ -38,11 +38,34 @@ GitHub Enterprise Platform에서 제공하는 자동화를 통하 생산성이 �
 
 ---
 
-# 2. 리포지토리란? [GH-100, GH-900]
+# 2. 리포지토리란? [`GH-100`, `GH-900`]
 
 리포지토리는 모든 프로젝트 파일과 각 파일들의 수정 기록이 포함되어 사용자와 공동 작업하는 데 도움이 되는 필수 요소 중 하나이다. 리포지토리를 통해 작업을 관리하고, 변경 내용을 추적과 수정 기록을 저장하고, 다른 사용자와 작업을 할 수 있다.
 
 ## 2.1 리포지토리 생성
 
-| Image | Description |
-| ----- | ----------- |
+1. GitHub DashBoard 페이지에서 우측 상단 모서리의 드롭다운 메뉴를 사용하고 새 리포지토리(`New repository`)를 선택한다.
+   
+   ![alt text](../github/image/repo-create.png)
+
+2. 소유자 드롭다운 메뉴를 사용하여 리포지토리에 대한 소유자의 계정을 선택한다.
+   
+   ![alt text](../github/image/repo-owner.png)
+
+3. 리포지토리의 이름과 설명(선택 사항)을 입력한다.
+   
+   ![alt text](../github/image/repo-namecheck.png)
+
+4. 리포지토리 표시 여부와 사전 구성 여부를 선택한다.
+   
+   ![alt text](../github/image/repo-configuration.png)
+
+> [!TIP]
+> **Public Repository : GitHub 내에서 공개되는 리포지토리로 외부 사용자의 기여나 혹은 자유로운 협력 방식이 적용 된다.**  
+> **Private Repository : 외부 사용자로 부터 기여를 받지는 못하지만 해당 리포지토리의 소유자가 직접 협력자 등록하여 협엽 방식이 적용 된다.**
+>
+> **Start with a template : 리포지토리를 생성 전 구조화된 템플릿 리포지토리를 베이스로 사전 구성을 진행한다.**  
+> **Add README, Add .gitignore : 리포지토리를 대표하는 커버 파일과 작업 영역의 커밋 진행 전 제외해야할 파일 혹은 디렉토리의 언어 환경을 선택 할 수 있다.**
+
+> [!WARNING]
+> **Add License : 개발 소프트웨어의 법적 자산으로서 보호를 해야 한다면 선택하는 것이 맞으나, 언어 혹은 프로젝트 및 조직에서 요구하는 라이선스가 있다면 필수로 선택해야 한다.**
