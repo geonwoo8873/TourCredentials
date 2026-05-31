@@ -1,6 +1,6 @@
 # 1. GitHub란? [GH-100]
 
-<img width="100%" height="500" alt="github image" src="/github/image/github.png" />출처: [Microsoft Learn](https://learn.microsoft.com/ko-kr/)
+<img width="100%" height="500" alt="github image" src="../github/image/github.png" />출처: [Microsoft Learn](https://learn.microsoft.com/ko-kr/)
 
 GitHub는 하나의 코드 저장소와 다양한 기능을 제공하는 플랫품으로 Git과 함께 공존하는 작업 공간이다. 분산 버전 제어 시스템인 Git이 개발자가 변경 내용을 추적하고 공동 작업하며 시간이 지남에 따라 수정 버전을 쉽게 관리할 수 있기 때문에 공동 작업 도구, 자동화 기능 사용자에게 친숙한 웹 인터페이스를 추가하여 Git을 기반으로 한다.
 
@@ -12,13 +12,13 @@ GitHub는 하나의 코드 저장소와 다양한 기능을 제공하는 플랫�
 
 ## 1.3 협업
 
-![alt text](/github/image/contrilbutors.png)
+![alt text](../github/image/contrilbutors.png)
 
 GitHub내에서 수행하는 모든 작업의 중심에는 항상 협업이라는 공동 작업이 존재하여, **팀이 효율적으로 협력하여 지연을 줄이고 워크플로를 간소화 하는 데 도움이 되는 도구를 제공한다.** 리포지토리, 문제, 끌어오기 요청 및 기타 도구들은 역할 간의 빠른 공동 작업을 지원하고 승인 주기를 단축하여 배포 속도를 향상시키는 데 도움이 된다.
 
 ## 1.4 생산성
 
-![alt text](/github/image/actions.png)
+![alt text](../github/image/actions.png)
 
 GitHub Enterprise Platform에서 제공하는 자동화를 통하 생산성이 향상된다. 개발 프로세스 단계에 직접 통합된 기본 제공되는 CI/CD(지속적인 통합 및 업데이트) 도구를 사용하면 사용자가 반복적인 작업을 자동화하고 작업을 가속화할 수 있기 때문에 이에 대한 개발자는 개발 및 문제 해결 단계에 집중할 수 있게된다. 
 
