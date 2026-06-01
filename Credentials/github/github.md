@@ -2,6 +2,7 @@
 
 <img width="100%" height="500" alt="github image" src="../github/image/github.png" />출처: [Microsoft Learn](https://learn.microsoft.com/ko-kr/)
 
+
 GitHub는 하나의 코드 저장소와 다양한 기능을 제공하는 플랫품으로 Git과 함께 공존하는 작업 공간이다. 분산 버전 제어 시스템인 Git이 개발자가 변경 내용을 추적하고 공동 작업하며 시간이 지남에 따라 수정 버전을 쉽게 관리할 수 있기 때문에 공동 작업 도구, 자동화 기능 사용자에게 친숙한 웹 인터페이스를 추가하여 Git을 기반으로 한다.
 
 하나의 클라우드 기반 플랫폼으로 프로젝트에서 협업 프로세스를 간소화하고 개발자와 사용자의 협업을 허용하는 웹 사이트로, 명령줄 도구(`GitHub CLI`) 및 전체 흐름(`History`)을 제공한다. 또한 보안 소프트웨어를 빌드, 크기 조징 및 제공하는 AI 기반 개발자 플랫품을 제공하여 Enterprise 플랫폼, AI, 공동 작업, 생산성, 보안 및 규모의 핵심들은 다음을 수행한다.
@@ -57,6 +58,7 @@ GitHub Enterprise Platform에서 제공하는 자동화를 통하 생산성이 �
    ![alt text](../github/image/repo-namecheck.png)
 
 4. 리포지토리 표시 여부와 사전 구성 여부를 선택한다.
+5. 
    
    ![alt text](../github/image/repo-configuration.png)
 
@@ -69,3 +71,17 @@ GitHub Enterprise Platform에서 제공하는 자동화를 통하 생산성이 �
 
 > [!WARNING]
 > **Add License : 개발 소프트웨어의 법적 자산으로서 보호를 해야 한다면 선택하는 것이 맞으나, 언어 혹은 프로젝트 및 조직에서 요구하는 라이선스가 있다면 필수로 선택해야 한다.**
+
+## 2.2 리포지토리 복제 방법
+
+격리된 작업 영역에서 하나의 리포지토리의 로컬 복사본을 생성할 수 있으며, 원격 리포지토리에 동기화하는 데 유용하다. 복사본 생성에 대한 과정은 다음을 수행하면 된다.
+
+> [!IMPORTANT]
+> **복사본을 생성 후 기여나 자신의 리포지토리에 대한 푸시는 Git의 사전 설정과 GitHub 계정이 반드시 필요하다.**
+
+1. GitHub.com 복제하고자 하는 리포지토리의 메인 페이지로 이동한다.
+2. 상단 `Add File` 드롭 다운 버튼 우측에 `Code` 드롭 다운 버튼을 선택하여 `Local`을 선택한다.
+
+
+3. HTTPS, SSH, GitHub CLI 외 IDE에서 팔렛트 명령어나 Bash에서 해당 리포지토리의 URL을 입력하거나 선택한다. 
+
