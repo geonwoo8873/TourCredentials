@@ -58,7 +58,6 @@ GitHub Enterprise Platform에서 제공하는 자동화를 통하 생산성이 �
    ![alt text](../github/image/repo-namecheck.png)
 
 4. 리포지토리 표시 여부와 사전 구성 여부를 선택한다.
-5. 
    
    ![alt text](../github/image/repo-configuration.png)
 
@@ -76,12 +75,25 @@ GitHub Enterprise Platform에서 제공하는 자동화를 통하 생산성이 �
 
 격리된 작업 영역에서 하나의 리포지토리의 로컬 복사본을 생성할 수 있으며, 원격 리포지토리에 동기화하는 데 유용하다. 복사본 생성에 대한 과정은 다음을 수행하면 된다.
 
-> [!IMPORTANT]
-> **복사본을 생성 후 기여나 자신의 리포지토리에 대한 푸시는 Git의 사전 설정과 GitHub 계정이 반드시 필요하다.**
-
 1. GitHub.com 복제하고자 하는 리포지토리의 메인 페이지로 이동한다.
 2. 상단 `Add File` 드롭 다운 버튼 우측에 `Code` 드롭 다운 버튼을 선택하여 `Local`을 선택한다.
 
+   ![alt text](../github/image/repo-mainpage.png)
 
 3. HTTPS, SSH, GitHub CLI 외 IDE에서 팔렛트 명령어나 Bash에서 해당 리포지토리의 URL을 입력하거나 선택한다. 
 
+   ![alt text](../github/image/repo-clone-type.png)
+
+4. 파일 이름 필드에 파일 이름 및 확장명을 입력하고, 하위 디렉터리를 포함하고자 한다면 디렉터리 구분에 [`/`]를 추가하여 입력한다.
+
+   ![alt text](../github/image/repo-name-role.png)
+
+5. 파일 내용 텍스트 상자에 파일 의 콘텐츠를 입력하고, 새 콘텐츠를 검토하려면 파일 콘텐츠 상단에서 미리 보기[`Preview`]를 선택한다.
+6. 해당 콘텐츠 편집이 완료되면 변경 사항 커밋을 선택한다.
+
+   ![alt text](../github/image/repo-content-preview.png)
+
+7. **메시지 커밋 필드**에 파일에 대한 변경 내용을 설명하는 커밋 메시지를 입력하고, **커밋 메시지에서 커밋을 둘 이상의 작성자에게 귀속할 수 있다.**
+8. **메시지 커밋 필드** 아래에서 현재 분기 또는 새 분기에 커밋을 추가할지 여부를 결정하고, 현재 분기가 기본 분기인 경우 커밋에 대한 **새 분기를 생성하도록 선택 하여 끌어오기 요청을 게시해야 한다.**
+
+   ![alt text](../github/image/repo-commit.png)
