@@ -1,5 +1,9 @@
 # 1. GitHub란? [`GH-100`]
 
+> [!CAUTION]
+> **본 자격 증명 학습 과정은 GitHub 계정이 필요하며 GH-100 일부 학습 내용을 익히고자 한다면 Enterprise 계정이 필요할 수 있다. 또한 사용중인 플랜마다 제공되는 기능이나 할당된 리소스 제한치가 다르므로 학습자의 맞게 진행하는 것을 권장한다.**  
+> **계정 플랜간 제공되는 기능이나 할당에 대한 내용은 [GitHub Accoutn Plans]()에 참고하면 된다.**
+
 <img width="100%" height="500" alt="github image" src="../github/image/github.png" />출처: [Microsoft Learn](https://learn.microsoft.com/ko-kr/)
 
 
@@ -37,63 +41,7 @@ GitHub Enterprise Platform에서 제공하는 자동화를 통하 생산성이 �
 > * **[History](GitHub-History.md)는 이벤트 기록이나 세부적인 검색을 통해 커밋 기록과 끌어오기 요청을 찾아 보다 프로젝트 관리성을 이점으로 제공한다.**
 > * **GitHub CLI는 하나의 `Terminal Command Line` 형태로 웹 사이트처럼 선택하여 하는것이 아닌 문자열 타입(`String`)으로 입력값을 받아 그에 준하는 명령을 수행하는 `Command Line Interface`다.**
 
+
 ---
 
-# 2. 리포지토리란? [`GH-100`, `GH-900`]
-
-리포지토리는 모든 프로젝트 파일과 각 파일들의 수정 기록이 포함되어 사용자와 공동 작업하는 데 도움이 되는 필수 요소 중 하나이다. 리포지토리를 통해 작업을 관리하고, 변경 내용을 추적과 수정 기록을 저장하고, 다른 사용자와 작업을 할 수 있다.
-
-## 2.1 리포지토리 생성
-
-1. GitHub DashBoard 페이지에서 우측 상단 모서리의 드롭다운 메뉴를 사용하고 새 리포지토리(`New repository`)를 선택한다.
-   
-   ![alt text](../github/image/repo-create.png)
-
-2. 소유자 드롭다운 메뉴를 사용하여 리포지토리에 대한 소유자의 계정을 선택한다.
-   
-   ![alt text](../github/image/repo-owner.png)
-
-3. 리포지토리의 이름과 설명(선택 사항)을 입력한다.
-   
-   ![alt text](../github/image/repo-namecheck.png)
-
-4. 리포지토리 표시 여부와 사전 구성 여부를 선택한다.
-   
-   ![alt text](../github/image/repo-configuration.png)
-
-> [!TIP]
-> **Public Repository : GitHub 내에서 공개되는 리포지토리로 외부 사용자의 기여나 혹은 자유로운 협력 방식이 적용 된다.**  
-> **Private Repository : 외부 사용자로 부터 기여를 받지는 못하지만 해당 리포지토리의 소유자가 직접 협력자 등록하여 협엽 방식이 적용 된다.**
->
-> **Start with a template : 리포지토리를 생성 전 구조화된 템플릿 리포지토리를 베이스로 사전 구성을 진행한다.**  
-> **Add README, Add .gitignore : 리포지토리를 대표하는 커버 파일과 작업 영역의 커밋 진행 전 제외해야할 파일 혹은 디렉토리의 언어 환경을 선택 할 수 있다.**
-
-> [!WARNING]
-> **Add License : 개발 소프트웨어의 법적 자산으로서 보호를 해야 한다면 선택하는 것이 맞으나, 언어 혹은 프로젝트 및 조직에서 요구하는 라이선스가 있다면 필수로 선택해야 한다.**
-
-## 2.2 리포지토리 복제 방법
-
-격리된 작업 영역에서 하나의 리포지토리의 로컬 복사본을 생성할 수 있으며, 원격 리포지토리에 동기화하는 데 유용하다. 복사본 생성에 대한 과정은 다음을 수행하면 된다.
-
-1. GitHub.com 복제하고자 하는 리포지토리의 메인 페이지로 이동한다.
-2. 상단 `Add File` 드롭 다운 버튼 우측에 `Code` 드롭 다운 버튼을 선택하여 `Local`을 선택한다.
-
-   ![alt text](../github/image/repo-mainpage.png)
-
-3. HTTPS, SSH, GitHub CLI 외 IDE에서 팔렛트 명령어나 Bash에서 해당 리포지토리의 URL을 입력하거나 선택한다. 
-
-   ![alt text](../github/image/repo-clone-type.png)
-
-4. 파일 이름 필드에 파일 이름 및 확장명을 입력하고, 하위 디렉터리를 포함하고자 한다면 디렉터리 구분에 [`/`]를 추가하여 입력한다.
-
-   ![alt text](../github/image/repo-name-role.png)
-
-5. 파일 내용 텍스트 상자에 파일 의 콘텐츠를 입력하고, 새 콘텐츠를 검토하려면 파일 콘텐츠 상단에서 미리 보기[`Preview`]를 선택한다.
-6. 해당 콘텐츠 편집이 완료되면 변경 사항 커밋을 선택한다.
-
-   ![alt text](../github/image/repo-content-preview.png)
-
-7. **메시지 커밋 필드**에 파일에 대한 변경 내용을 설명하는 커밋 메시지를 입력하고, **커밋 메시지에서 커밋을 둘 이상의 작성자에게 귀속할 수 있다.**
-8. **메시지 커밋 필드** 아래에서 현재 분기 또는 새 분기에 커밋을 추가할지 여부를 결정하고, 현재 분기가 기본 분기인 경우 커밋에 대한 **새 분기를 생성하도록 선택 하여 끌어오기 요청을 게시해야 한다.**
-
-   ![alt text](../github/image/repo-commit.png)
+[Next GitHub Account](./github-account-plans.md)
