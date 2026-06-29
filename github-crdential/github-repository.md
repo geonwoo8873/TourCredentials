@@ -37,25 +37,25 @@
 1. GitHub.com 복제하고자 하는 리포지토리의 메인 페이지로 이동한다.
 2. 상단 `Add File` 드롭 다운 버튼 우측에 `Code` 드롭 다운 버튼을 선택하여 `Local`을 선택한다.
 
-   ![alt text](../github/image/repo-mainpage.png)
+   ![alt text](../github-crdential/image/repo-mainpage.png)
 
 3. HTTPS, SSH, GitHub CLI 외 IDE에서 팔렛트 명령어나 Bash에서 해당 리포지토리의 URL을 입력하거나 선택한다. 
 
-   ![alt text](../github/image/repo-clone-type.png)
+   ![alt text](../github-crdential/image/repo-clone-type.png)
 
 4. 파일 이름 필드에 파일 이름 및 확장명을 입력하고, 하위 디렉터리를 포함하고자 한다면 디렉터리 구분에 [`/`]를 추가하여 입력한다.
 
-   ![alt text](../github/image/repo-name-role.png)
+   ![alt text](../github-crdential/image/repo-name-role.png)
 
 5. 파일 내용 텍스트 상자에 파일 의 콘텐츠를 입력하고, 새 콘텐츠를 검토하려면 파일 콘텐츠 상단에서 미리 보기[`Preview`]를 선택한다.
 6. 해당 콘텐츠 편집이 완료되면 변경 사항 커밋을 선택한다.
 
-   ![alt text](../github/image/repo-content-preview.png)
+   ![alt text](../github-crdential/image/repo-content-preview.png)
 
 7. **메시지 커밋 필드**에 파일에 대한 변경 내용을 설명하는 커밋 메시지를 입력하고, **커밋 메시지에서 커밋을 둘 이상의 작성자에게 귀속할 수 있다.**
 8. **메시지 커밋 필드** 아래에서 현재 분기 또는 새 분기에 커밋을 추가할지 여부를 결정하고, 현재 분기가 기본 분기인 경우 커밋에 대한 **새 분기를 생성하도록 선택 하여 끌어오기 요청을 게시해야 한다.**
 
-   ![alt text](../github/image/repo-commit.png)
+   ![alt text](../github-crdential/image/repo-commit.png)
 
 9. 변경 내용 커밋 또는 변경 내용 제안을 선택한다.
 
