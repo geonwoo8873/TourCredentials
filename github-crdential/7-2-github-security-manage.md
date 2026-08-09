@@ -68,10 +68,14 @@ GitHub는 프로젝트 투명성을 향상시키기 위한 주요 커뮤니티�
 * 규정 준수 지원
   * 규정 준수 보고서: 감사 및 규정 요구 사항에 사용할 수 있는 `SOC 1 ~ 2 유형 2`, `ISO/IEC 27001:2013 인증`
 
+![alt text](../github-crdential/image/github-ghas.png)
+
 > [!TIP]
 > * **GitHub GHAS(Advanced Security)**
 >   * [GitHub GHAS Learn](https://learn.microsoft.com/en-us/credentials/certifications/github-advanced-security/?practice-assessment-type=certification)
->   * -
+>   * [GitHub GHAS Description](https://www.microsoft.com/en-us/securityengineering/sdl/ghas?msockid=2ea011cb2f176bae059c065e2ed76a70)
+>   * GitHub는 코드의 무결성을 목표로 향상과 보존을 위해 설계된 다양한 기능을 제공하며, 기능들은 모든 제공되는 구독 요금제 플랜에 통합되어 각 의존성에 대해 라이선스 정보와 취약점 심각도를 확인할 수 있다.
+>   * 취약한 의존성을 업데이트하기 위한 풀 요청[`Pull_Request`] 생성해 취약점이 있는 패키지를 사용하게되면 시스템을 침해하려는 악의적인 공격자의 쉬운 표적으로 영향을 끼칠 수 있기 때문에 `GHAS` 적용을 권장한다.
 > * **SOC**
 >   * -
 > * **ISO/IEC 27001:2013**
@@ -82,4 +86,31 @@ GitHub는 프로젝트 투명성을 향상시키기 위한 주요 커뮤니티�
 > 기밀 데이터가 누출되면 해당 문제 부분 기록을 재작성하거나 GitHub 지원을 통해 신속하게 요청해야 한다.
 
 ### 3.2.1 기록 재작성
+
+
+### 3.2.2 GitHub 지원에 문의
+
+> 공용 리포지토리의 경우 캐시된 인덱스가 지속될 수 있다.
+
+#### 지원 프로세스
+
+1. 데이터가 중요한 경우 리포지토리 전체를 삭제
+2. 기록 및 강제 푸시를 통한 재기록 진행
+3. 리포지토리 이름, 커밋 혹은 파일 및 기록 재작성 확인을 사용해 GitHub 지원을 통한 제거를 요청하고 캐시를 플러시
+
+#### 비밀 데이터 값 누출 방지
+
+* `.gitignore` 사용
+* `GitHub 비밀` 또는 `비밀 관리자`를 활성화하여 비밀 저장
+* `GitGuraian` 또는 `TruffleHog`로 정기적으로 스캔 진행
+
+## 3.3 보안 권고 게시
+
+> 취약성이 발생하면 GitHub 보안 권고를 사용하여 다음을 수행한다.
+
+![alt text](../github-crdential/image/security-advisories.png)
+
+* 수정 작업에 대한 비공개 공동 작업
+* 세부 정보를 명확하게 전달
+* 문서 완화 단계
 
