@@ -106,8 +106,11 @@ GitHub 관리자는 분기 및 태그를 푸시, 삭제 또는 이름을 바꿀 
 
 ## 3.1 누락된 자산 문제를 해결하는 단계
 
-1. 자산 식별
+1. 자산(EX : `repository.deleted`) 식별
 2. 감사 로그 API(REST) 쿼리
+   * **REST**: `?phrase=repository.deleted`
+   * **GraphQL** : `query auditLogEntries(query: "repository.deleted")`
+  
    ```
    GET /orgs/{org}/audit-log?phrase=repository.deleted
    Authorization: Bearer YOUR_TOKEN
@@ -128,6 +131,67 @@ GitHub 관리자는 분기 및 태그를 푸시, 삭제 또는 이름을 바꿀 
 5. **수정** : 자산을 복원하거나 보안 설정을 강화한다.
 
 # 4. 보고 및 로깅
-
+      
 > * **리포지토리 삭제 또는 실패한 워크플로 실행과 같은 예기치 않은 이벤트가 발생하면 누가, 언제, 어떻게 수행했는지에 대한 정확한 세부 정보가 필요하다. GitHub의 감사 로그는 문제 해결, 규정 준수 및 보안 조사를 위해 이 정보를 캡쳐한다.**  
 > * **GitHub.com, GitHub Enterprise Server 또는 GitHub AE를 통해 감사 로그에 액세스할 수 있으며, GraphQL API 또는 REST API를 통해 감사 로그와 상호 작용하면 몇 가지 제한 사항이 있지만 특정 유형의 정보를 검색할 수 있다.**
+
+## 4.1 로그 레코드
+
+> **`로그 레코드`는 조직 구성원이 수행한 작업을 기록하여 조직 소유자가 사용할 수 있는 로그는 다음을 포함하여 조직에 영향을 주는 작업에 대한 정보를 제공한다.**
+
+* 작업이 수행된 리포지토리
+* 작업을 수행한 사용자
+* 수행된 작업
+* 작업이 수행된 국가 또는 지역
+* 작업의 날짜 및 시간
+
+#### GitHub UI를 통해 감사 로그 보기 및 내보내기
+
+> [!WARNING]
+> **GitHub Ui를 통한 감사 로그 확인 및 내보내기는 `조직` 혹은 `기업`내 설정 에서만 가능하다.**
+
+| Qualifier        | Description          | Example value          |
+| ---------------- | -------------------- | ---------------------- |
+| **action**       | 동장에 의한 필터링   | team.create            |
+| **actor**        | 저자별 필터링        | octocat                |
+| **country**      | 국가별 필터링        | codertocat             |
+| **created**      | 생성 날짜로 필터링   | 2026-08-21             |
+| **operation**    | 연산별 필터링        |                        |
+| **organization** | 조직별 필터링        | octo-org               |
+| **repository**   | 저장소별 필터링      | octo-org/documentation |
+| **token_id**     | 토큰 ID로 필터링     |                        |
+| **user**         | 사용자별 필터링      |                        |
+| **hashed_token** | 접근 토큰으로 필터링 |                        |
+
+## 4.2 API를 통해 감사 로그 액세스
+
+#### REST API (REST 애플리케이션 프로그래밍 인터페이스)
+
+* **범위** : Enterprise Cloud(최대 90일)
+* **모니터** : 설정 변경, 권한 업데이트, 팀 멤버 자격, 애플리케이션 변경 및 Git이벤트
+
+``` sql
+GET /orgs/{org}/audit-log?phrase=git.push
+Authorization: Bearer YOUR_TOKEN
+```
+
+#### GraphQL API
+
+* **범위** : Enterprise Server(최대 90일)
+* **모니터** : 설정 변경, 권한 업데이트, 팀 멤버 자격, 애플리케이션 변경
+* **제한** : Git 이벤트는 포함하지 않는다.
+
+```sql
+query {
+  auditLogEntries(first: 20, query: "org:octo-org action:repo.cleanup") {
+    nodes {
+      action
+      actor { login }
+      createdAt
+      repository { name }
+    }
+  }
+}
+```
+
+## 4.3 감사 로그에 대한 사용 사례
