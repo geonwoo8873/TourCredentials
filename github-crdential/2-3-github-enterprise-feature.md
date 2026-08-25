@@ -316,10 +316,10 @@ https://api.github.com/enterprises/YOUR_ENTERPRISE/audit-log
 
 #### 설치 개요
 
-| **플랫품** | **프로세스** |
-| - | - |
-| **Cloud** | Teams를 조직 설정으로 이동한 다음 팀 멤버 자격을 만들거나 관리한다. |
-| **Server** | 관리 콘솔을 사용하여 팀을 구성하고 조직 수준에서 권한을 할당한다. |
+| **플랫품** | **프로세스**                                                        |
+| ---------- | ------------------------------------------------------------------- |
+| **Cloud**  | Teams를 조직 설정으로 이동한 다음 팀 멤버 자격을 만들거나 관리한다. |
+| **Server** | 관리 콘솔을 사용하여 팀을 구성하고 조직 수준에서 권한을 할당한다.   |
 
 #### 혜택
 
@@ -334,9 +334,9 @@ https://api.github.com/enterprises/YOUR_ENTERPRISE/audit-log
 
 > **Enterprise Apps는 조직 전체에 설치된 GitHub Apps에 대한 감독 및 제어를 강화한다.**
 
-| **플랫품** | **프로세스** |
-| - | - |
-| **Cloud** | GitHub 앱에 → 개발자 설정으로 이동하여 사용자 지정 앱을 설치하거나 만들고 권한을 구성합니다. |
+| **플랫품** | **프로세스**                                                                                   |
+| ---------- | ---------------------------------------------------------------------------------------------- |
+| **Cloud**  | GitHub 앱에 → 개발자 설정으로 이동하여 사용자 지정 앱을 설치하거나 만들고 권한을 구성합니다.   |
 | **Server** | 관리 콘솔을 사용하여 사용자 지정 범위 및 웹후크 설정을 사용하여 GitHub 앱을 만들고 관리합니다. |
 
 #### 혜택
@@ -349,3 +349,46 @@ https://api.github.com/enterprises/YOUR_ENTERPRISE/audit-log
 
 > **[GitHub Marketplace](https://github.com/marketplace)는 CI/CD를 간소화하고 협업을 강화하며 GitHub 기능들을 대규모로 확장하는 재사용 가능한 자동화 도구를 제공한다. 이러한 도구에는 범위, 수명 주기 및 사용 사례가 서로 다른 두 가지 핵심 통합 유형인 GitHub Actions 및 GitHub Apps가 포함된다.**
 
+### 7.4.1 작업과 앱 중에서 선택
+
+| **특징**      | **GitHub Actions**                                 | **GitHub Apps**                       |
+| ------------- | -------------------------------------------------- | ------------------------------------- |
+| **사용 사례** | 워크플로 자동화(`CI/CD`, `Linting`, ...etc)        | API, UI 및 권한을 통해 확장           |
+| **실행**      | GitHub 호스팅/자체 호스팅 실행기에서 트리거별 실행 | 서비스로 실행 및 웹후크 이벤트에 응답 |
+| **인증모델**  | 임시를 사용                                        | JWT + 설치 토큰 사용                  |
+| **청구**      | 작업 분당 요금 청구                                | SaaS 기반                             |
+
+### 7.4.2 Marketplace 도구가 내부에서 작동하는 방식
+
+> **GitHub와 상호 작용하는 방식을 이해하면 정보에 입각한 결정을 내리고 보다 효과적으로 문제를 해결할 수 있다.**
+
+#### GitHub Actions 워크플로
+
+1. **설치** : `.github/workflows/.yaml` 워크플로 정의
+2. **트리거** : GitHub 이벤트(`push`)가 워크플로를 시작
+3. **실행기** : GitHub는 실행기를 실행한다.
+4. **실행** : 명령을 실행하고, 작업을 사용하며, `GITHUB_TOKEN`에 접근한다.
+5. **결과** : 로그 및 상태가 GitHub로 다시 푸시된다.
+
+> **흐름**
+> * Repository Event → Workflow Triggered → Runner Executes Jobs → Output Returned to GitHub
+
+#### GitHub Apps 워커플로
+
+1. **설치** : 앱은 특정 리포지토리/조직 수준 권한으로 설치된다.
+2. **웹후크** : GitHub는 이벤트(`issues.opened)를 앱의 서버로 보낸다.
+3. **인증** : 앱은 프라이빗 키 + 설치 토큰을 사용하여 인증한다.
+4. **상호 작용** : 앱은 리포지토리에서 작동하도록 API 호출을 수행한다.
+
+> **흐름**
+> * Repository Event → Webhook Sent → App Server Receives → Authenticates → GitHub API Call → Action Taken
+
+> [!NOTE]
+> **GitHub Actions의 실습 예제는 다루지 않으므로 공식 학습 내용에서 제공된다.** [실제 예제](https://learn.microsoft.com/ko-kr/training/modules/github-administration-for-enterprise-support-adoption/4-scale-your-github-enterprise-deployment)
+
+#### Marketplace 검색 팁
+
+* **도구 유형 확인** : 광범위한 기능을 위해 앱을 사용합니다. 작업별 자동화에 대한 작업 입니다.
+* **예산 기본 설정 설정** :무료, 무료 평가판 또는 유료 앱으로 필터링합니다.
+* **범주별 구체화** : 프로젝트 목표와 일치하도록 CI/CD 와 같은 범주를 선택합니다.
+* **엔터프라이즈 지원에 집중** : 맞춤형 도구에 대해 GitHub Enterprise 필터를 사용합니다.
