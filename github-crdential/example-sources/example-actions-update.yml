@@ -1,0 +1,18 @@
+name: Update Runners
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'  # Runs every Monday at 3 AM
+
+jobs:
+  update-runners:
+    runs-on: self-hosted
+    steps:
+      - name: Download and update runner
+        run: |
+          ./svc.sh stop
+          curl -o actions-runner.tar.gz -L \
+          https://github.com/actions/runner/releases/latest/download/actions-runner-linux-x64.tar.gz
+          tar xzf actions-runner.tar.gz
+          ./config.sh --url https://github.com/<org-name> --token <generated-token>
+          ./svc.sh start
