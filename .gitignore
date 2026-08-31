@@ -1,11 +1,11 @@
-# DotNET project in the build root directories
-**/bin
-**/obj
-
 # Ignore IDE in the root directory
 .vs/
 .vscode/
 
-# Rust
-**/target
-**/*.lock
+# DotNET project in the build root directories
+**/bin
+**/obj
+
+# Secret files
+
+*.env
