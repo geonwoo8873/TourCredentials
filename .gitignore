@@ -6,6 +6,10 @@
 **/bin
 **/obj
 
+# Go ignore files
+
+*.exe
+
 # Secret files
 
 *.env

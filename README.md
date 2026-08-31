@@ -1,22 +1,16 @@
-# Credentials notes
+# Pulic Learn Note Collection
 
-## Description
-`TourCredentials`은 저의 자격증명 및 프로그래밍 언어 학습 내용을 저장하며 지속적인 성장 가능성을 모색하고자 혼자만의 노트가 아닌 여러 개발자들의 지식도 함께 전달하고자 하는 목표로 작성하고 있습니다. 하지만 많은 학습을 진행하며 방대한 내용을 하나의 파일 혹은 여러 파일의 쪼개기 방식은 가독성의 문제를 야기하기 때문에 최대한의 연계되는 내용들은 링크형식으로 작성중 입니다. 영문 버전은 향후 번역 혹은 해독을 통해 진행될 예정이니 참고 부탁드립니다.  
-감사합니다.  
--GEONWOO-  
+# 1. Collection Information
 
-`TourCredentials` is created with the goal of not only storing my certifications and programming language learning content but also sharing the knowledge of multiple developers, rather than being just a personal notebook, in order to seek continuous growth potential. However, as I progress through extensive learning, compiling vast content into a single file or splitting it into multiple files causes readability issues, so I am currently writing related content in a linked format as much as possible. Please note that the English version will be provided in the future through translation or interpretation.  
-Thank you.   
--GEONWOO-
+`tour-learn-collection`은 개발자와 엔지니어로 성장하기 위해 지속적으로 학습한 내용을 기록하는 리포지토리입니다. 이곳은 단순히 개인의 학습 기록을 남기는 공간을 넘어, 프로그래밍 언어와 자격 증명 등 다양한 지식을 함께 공유하고 확산하는 문화를 만드는 것을 목표로 합니다. 학습을 통해 지식을 쌓고, 이를 나누며, 더 나은 커리어에 도전하는 것—그것이 이 프로젝트의 꿈이자 방향입니다.
 
-## Road Maps
-* GitHub Credential
-  * GH-900 [GH-900 Credential](https://learn.microsoft.com/ko-kr/credentials/certifications/github-foundations/?practice-assessment-type=certification)
-  * GH-100 [GH-100 Credential](https://learn.microsoft.com/ko-kr/credentials/certifications/github-administration/?practice-assessment-type=certification)
- 
-* Azure DevOps Credential
-* * AZ-900 [AZ-400 Credential](https://learn.microsoft.com/ko-kr/credentials/certifications/exams/az-900/)
-  * AZ-400 [AZ-400 Credential](https://learn.microsoft.com/ko-kr/credentials/certifications/exams/az-400/)
- 
-* Database Credential
-  * DP-300 [DP-300 Credential](https://learn.microsoft.com/ko-kr/credentials/certifications/azure-database-administrator-associate/?practice-assessment-type=certification)
+`tour-learn-collection` is a repository dedicated to recording the continuous learning undertaken to grow as a developer and engineer. Beyond simply serving as a space for personal study records, it aims to foster a culture of sharing and disseminating diverse knowledge, including programming languages ​​and credentials. Building knowledge through learning, sharing it, and striving for a better career—that is the dream and direction of this project.
+
+# 2. Learn Collection RoadMap
+
+* Currently
+  * GitHub Admin
+
+* 4Q/2026
+  
+* 1Q/2027
