@@ -6,18 +6,18 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 3306
-      DB_NAME: appdb
-      DB_USER: appuser
-      DB_PASSWORD: apppass
+      DB_NAME: testdb
+      DB_USER: testuser
+      DB_PASSWORD: examplepass
 
   db:
     image: mysql:8.4
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: appdb
-      MYSQL_USER: appuser
-      MYSQL_PASSWORD: apppass
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_ROOT_PASSWORD: testrootpass
+      MYSQL_DATABASE: testdb
     ports:
       - "3306:3306"
     volumes:
