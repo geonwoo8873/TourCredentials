@@ -8,9 +8,14 @@
 
 # 2. Learn Collection RoadMap
 
-* Currently
-  * GitHub Admin
+* **Acquisition**
+  * GitHub Foundation (`Acquisition`)
+  * GitHub Admin (`Acquisition`)
 
-* 4Q/2026
+* **Currently**
+  * AWS Solutions Architect Associate (`Preparing`)
+
+* **4Q/2026**
+  * AWS Solutions Architect Associate (`Preparing`)
   
-* 1Q/2027
+* **1Q/2027**
