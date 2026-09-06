@@ -165,7 +165,7 @@ GitHub 엔터프라이즈 관리자는 안전하고 확장 가능한 개발 환�
 
 # 6. GitHub Enterprise 지원 [`GH-100`]
 
-> **GitHub Enterprise에서 사용할 수 있는 향상된 지원 옵션을 설명하고 GitHub 지원을 사용할 대 관리자의 주요 책임을 간략하게 설명한다. GitHub Enterprise Server 또는 GitHub Enterprise Cloud를 사용하든 이 지원을 적용할 수 있다,**
+> **GitHub Enterprise에서 사용할 수 있는 향상된 지원 옵션을 설명하고 GitHub 지원을 사용할 때 관리자의 주요 책임을 간략하게 설명한다. GitHub Enterprise Server 또는 GitHub Enterprise Cloud를 사용하든 이 지원을 적용할 수 있다.**
 
 ## 6.1 지원의 가용성
 
@@ -316,7 +316,7 @@ https://api.github.com/enterprises/YOUR_ENTERPRISE/audit-log
 
 #### 설치 개요
 
-| **플랫품** | **프로세스**                                                        |
+| **플랫폼** | **프로세스**                                                        |
 | ---------- | ------------------------------------------------------------------- |
 | **Cloud**  | Teams를 조직 설정으로 이동한 다음 팀 멤버 자격을 만들거나 관리한다. |
 | **Server** | 관리 콘솔을 사용하여 팀을 구성하고 조직 수준에서 권한을 할당한다.   |
@@ -334,7 +334,7 @@ https://api.github.com/enterprises/YOUR_ENTERPRISE/audit-log
 
 > **Enterprise Apps는 조직 전체에 설치된 GitHub Apps에 대한 감독 및 제어를 강화한다.**
 
-| **플랫품** | **프로세스**                                                                                   |
+| **플랫폼** | **프로세스**                                                                                   |
 | ---------- | ---------------------------------------------------------------------------------------------- |
 | **Cloud**  | GitHub 앱에 → 개발자 설정으로 이동하여 사용자 지정 앱을 설치하거나 만들고 권한을 구성합니다.   |
 | **Server** | 관리 콘솔을 사용하여 사용자 지정 범위 및 웹후크 설정을 사용하여 GitHub 앱을 만들고 관리합니다. |
